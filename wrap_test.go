@@ -7,9 +7,11 @@ import (
 )
 
 func ExampleWrap() {
-	var err error
-	err = fmt.Errorf("some error")
-	errwrap.Wrap(&err, "wrapped")
+	fn := func(x int) (err error) {
+		defer errwrap.Wrap(&err, "fn(%d)", x)
+		return fmt.Errorf("error")
+	}
+	err := fn(1)
 	fmt.Println(err)
-	// Output: wrapped: some error
+	// Output: fn(1): error
 }
