@@ -20,6 +20,9 @@ func formatAnnotate(annotate []any) string {
 	return fmt.Sprintf(msg, annotate[1:]...)
 }
 
+// You can use this Wrap function to wrap an error with an annotation.
+// The annotation will be passed to fmt.Sprintf,
+// so it must starts with a format string.
 func Wrap(err *error, annotate ...any) {
 	if err == nil || *err == nil {
 		return
