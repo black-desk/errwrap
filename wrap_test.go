@@ -3,12 +3,12 @@ package errwrap_test
 import (
 	"fmt"
 
-	. "github.com/black-desk/errwrap"
+	"github.com/black-desk/errwrap"
 )
 
 func ExampleWrap() {
 	fn := func(x int) (err error) {
-		defer Wrap(&err, "fn(%d)", x)
+		defer errwrap.Wrap(&err, "fn(%d)", x)
 		return fmt.Errorf("error")
 	}
 	err := fn(1)
