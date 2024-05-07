@@ -34,9 +34,9 @@ func Wrap(err *error, annotate ...any) {
 
 	msg := formatAnnotate(annotate)
 
-	if msg != "" {
-		*err = fmt.Errorf(msg+": %w", *err)
+	if msg == "" {
+		return
 	}
 
-	return
+	*err = fmt.Errorf(msg+": %w", *err)
 }

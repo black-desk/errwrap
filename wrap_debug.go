@@ -26,17 +26,16 @@ func Wrap(err *error, annotate ...any) {
 		return
 	}
 
+	msg := formatAnnotate(annotate)
+
 	pc, file, line, ok := runtime.Caller(1)
 	if !ok {
 		panic("failed to get caller")
 	}
 
-	msg := formatAnnotate(annotate)
-
 	*err = fmt.Errorf(
-		"%s:%d (%x)\n"+msg+"%w",
-		file, line, pc,
+		"%s:%d (%x)%s\n%w",
+		file, line, pc, msg,
 		*err,
 	)
-	return
 }
