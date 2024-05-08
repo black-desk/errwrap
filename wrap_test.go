@@ -6,7 +6,7 @@ import (
 	"github.com/black-desk/errwrap"
 )
 
-func ExampleWrap_with_annotation() {
+func ExampleWrap_wrap_error_with_annotation() {
 	fn := func(x int) (err error) {
 		defer errwrap.Wrap(&err, "fn(%d)", x)
 		return fmt.Errorf("error")
@@ -17,7 +17,7 @@ func ExampleWrap_with_annotation() {
 	// Output: fn(1): error
 }
 
-func ExampleWrap_without_annotation() {
+func ExampleWrap_wrap_error_without_annotation() {
 
 	fn := func() (err error) {
 		defer errwrap.Wrap(&err)
